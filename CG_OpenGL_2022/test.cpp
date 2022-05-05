@@ -10,6 +10,8 @@ GLFWwindow* window;
 
 #include <GLM\glm.hpp>
 
+#include <GLM\gtc\matrix_transform.hpp>
+
 #include "shader.h"
 
 int main()
@@ -60,7 +62,7 @@ int main()
 
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-		
+
 
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
@@ -68,7 +70,7 @@ int main()
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
-	
+
 	static const GLfloat g_vertex_buffer_data[] = {
 		-1.0f, -1.0f, 0.0f,
 		1.0f, -1.0f, 0.0f,
@@ -80,7 +82,36 @@ int main()
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
-	GLuint ProgramID = LoadShaders("SimpleVertexShader.vert", "SimpleFragmentShader.frag");
+	static const GLfloat g_vertex_color_buffer_data[] = {
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+	};
+
+	GLuint vertexColorBuffer;
+	glGenBuffers(1, &vertexColorBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexColorBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_color_buffer_data),
+		g_vertex_color_buffer_data, GL_STATIC_DRAW);
+		
+	GLuint ProgramID = LoadShaders("Week2VertexShader.vert", "Week2FragmentShader.frag");
+
+	// 유니폼 변수 생성
+	GLuint MatrixID = glGetUniformLocation(ProgramID, "MVP");
+
+	glm::mat4 View = glm::lookAt(glm::vec3(3, 3, 3),
+		glm::vec3(0, 0, 0),
+		glm::vec3(0, 1, 0));
+
+	glm::mat4 Projection = glm::perspective(
+		glm::radians(45.0f),
+		1024.0f / 768.0f,
+		0.1f,
+		100.0f);
+
+	glm::mat4 Model = glm::mat4(1.0f);
+
+	glm::mat4 MVP = Projection * View * Model;
 
 	do {
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -98,8 +129,16 @@ int main()
 			(void*)0
 		);
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexColorBuffer);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0,
+			(void*)0
+		);
 
+		// 유니폼 변수 데이터 입력
+		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glDisableVertexAttribArray(0);
 
 		// Swap buffers

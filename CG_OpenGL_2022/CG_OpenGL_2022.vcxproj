@@ -152,6 +152,8 @@
   <ItemGroup>
     <None Include="SimpleFragmentShader.frag" />
     <None Include="SimpleVertexShader.vert" />
+    <None Include="Week2FragmentShader.frag" />
+    <None Include="Week2VertexShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
