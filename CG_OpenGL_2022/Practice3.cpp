@@ -193,6 +193,9 @@ int main()
 
 	glm::mat4 MVP = Projection * View * Model;
 	glm::mat4 MVP2 = Projection * View * Model2;
+	//
+
+	glfwSetCursorPos(window, 1024 / 2, 768 / 2);
 
 	do {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // depth buffer 값 초기화
@@ -220,6 +223,15 @@ int main()
 			Rotation = glm::rotate(Rotation, glm::radians(0.3f), glm::vec3(0, 1, 0));
 		}
 
+		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
+		{
+			Rotation = glm::rotate(Rotation, glm::radians(-0.5f), glm::vec3(0, 1, 0));
+		}
+
+		double xpos, ypos;
+		glfwGetCursorPos(window, &xpos, &ypos);
+		Rotation = glm::rotate(Rotation, glm::radians(0.1f) * (float)(xpos - 1024 / 2), glm::vec3(0, 1, 0));
+
 		Model = Translation * Rotation * Scaling;
 		MVP = Projection * View * Model;
 
@@ -234,6 +246,8 @@ int main()
 		glDrawArrays(GL_TRIANGLES, 0, 3 * 12);
 
 		glDisableVertexAttribArray(0);
+
+		glfwSetCursorPos(window, 1024 / 2, 768 / 2);
 
 		// Swap buffers
 		glfwSwapBuffers(window);
