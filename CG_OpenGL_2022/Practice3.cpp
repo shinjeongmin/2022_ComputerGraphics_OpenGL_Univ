@@ -62,7 +62,9 @@ int main()
 
 	// Ensure we can capture the escape key being pressed below
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
-
+	glEnable(GL_DEPTH_TEST); // 깊이 갚에 따라서
+	glDepthFunc(GL_LESS);
+	glEnable(GL_CULL_FACE); // 물체가 카메라와 마주볼 때 
 
 	// Dark blue background
 	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
@@ -182,7 +184,7 @@ int main()
 	glm::mat4 MVP = Projection * View * Model;
 
 	do {
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // depth buffer 값 초기화
 
 		glUseProgram(ProgramID);
 
