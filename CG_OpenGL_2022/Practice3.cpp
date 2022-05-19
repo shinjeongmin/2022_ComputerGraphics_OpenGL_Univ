@@ -181,9 +181,9 @@ int main()
 
 	glm::mat4 Model = glm::mat4(1.0f);
 
-	glm::mat4 Translation = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 2));
+	glm::mat4 Translation = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 1));
 	glm::mat4 Rotation = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0, 1, 0));
-	glm::mat4 Scaling = glm::scale(glm::mat4(1.0f), glm::vec3(1.2f, 1.2f, 1.2f));
+	glm::mat4 Scaling = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f));
 	Model = Translation * Rotation * Scaling;
 
 	glm::mat4 MVP = Projection * View * Model;
