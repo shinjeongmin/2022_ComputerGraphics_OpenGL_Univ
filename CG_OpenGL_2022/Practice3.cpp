@@ -216,11 +216,18 @@ int main()
 			(void*)0
 		);
 
+		if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS) {
+			Rotation = glm::rotate(Rotation, glm::radians(0.3f), glm::vec3(0, 1, 0));
+		}
+
+		Model = Translation * Rotation * Scaling;
+		MVP = Projection * View * Model;
+
 		// 유니폼 변수 데이터 입력
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
 		glDrawArrays(GL_TRIANGLES, 0, 3 * 12);
-		
+
 		// 유니폼 변수 2 데이터를 입력
 		glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP2[0][0]);
 
