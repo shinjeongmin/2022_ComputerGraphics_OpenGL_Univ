@@ -169,7 +169,7 @@ int main()
 	// 유니폼 변수 생성
 	GLuint MatrixID = glGetUniformLocation(ProgramID, "MVP");
 
-	glm::mat4 View = glm::lookAt(glm::vec3(3, 3, 3),
+	glm::mat4 View = glm::lookAt(glm::vec3(4, 3, 3),
 		glm::vec3(0, 0, 0),
 		glm::vec3(0, 1, 0));
 
@@ -180,6 +180,11 @@ int main()
 		100.0f);
 
 	glm::mat4 Model = glm::mat4(1.0f);
+
+	glm::mat4 Translation = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 2));
+	glm::mat4 Rotation = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0, 1, 0));
+	glm::mat4 Scaling = glm::scale(glm::mat4(1.0f), glm::vec3(1.2f, 1.2f, 1.2f));
+	Model = Translation * Rotation * Scaling;
 
 	glm::mat4 MVP = Projection * View * Model;
 
