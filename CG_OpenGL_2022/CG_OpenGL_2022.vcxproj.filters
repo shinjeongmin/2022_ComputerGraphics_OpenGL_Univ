@@ -27,7 +27,13 @@
     <ClCompile Include="Practice3.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Week3.cpp">
+    <ClCompile Include="Week3Example.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Practice4.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Chap6_ObjectLoading_prev.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,5 +55,10 @@
     <None Include="Week2FragmentShader.frag">
       <Filter>소스 파일</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="cube.obj">
+      <Filter>소스 파일</Filter>
+    </Object>
   </ItemGroup>
 </Project>
