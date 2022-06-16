@@ -142,7 +142,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chap6_ObjectLoading_prev.cpp" />
+    <ClCompile Include="Chap6_ObjectLoading_prev.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Chap7_Texture_prev.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Chap8_Lighting.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Practice3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -163,7 +171,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleFragmentShader.frag" />
+    <None Include="SimpleLightFragmentShader.frag" />
+    <None Include="SimpleLightVertexShader.vert" />
     <None Include="SimpleVertexShader.vert" />
+    <None Include="TextureFragmentShader.frag" />
+    <None Include="TextureVertexShader.vert" />
     <None Include="Week2FragmentShader.frag" />
     <None Include="Week2VertexShader.vert" />
   </ItemGroup>
@@ -171,6 +183,12 @@
     <Object Include="cube.obj">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </Object>
+    <Object Include="cylinder.obj">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="cubeTex.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

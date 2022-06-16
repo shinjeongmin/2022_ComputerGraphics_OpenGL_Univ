@@ -36,6 +36,12 @@
     <ClCompile Include="Chap6_ObjectLoading_prev.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Chap7_Texture_prev.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Chap8_Lighting.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -55,10 +61,30 @@
     <None Include="Week2FragmentShader.frag">
       <Filter>소스 파일</Filter>
     </None>
+    <None Include="TextureFragmentShader.frag">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="TextureVertexShader.vert">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="SimpleLightFragmentShader.frag">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="SimpleLightVertexShader.vert">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Object Include="cube.obj">
       <Filter>소스 파일</Filter>
     </Object>
+    <Object Include="cylinder.obj">
+      <Filter>소스 파일</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="cubeTex.bmp">
+      <Filter>소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
